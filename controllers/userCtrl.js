@@ -1,4 +1,4 @@
-
+import { getNextId } from "../services/getId.js";
 let users = [{ id: 1, name: 'Alice' }];
 
 // GET '/users'
@@ -12,7 +12,7 @@ export const postUser = async (req, res) => {
     if (!name) {
         return res.status(400).json({ error: 'Name is required' });
     }
-    const newUser = { id: Date.now(), name };
+    const newUser = { id: getNextId(users), name };
     users.push(newUser);
     res.status(201).json(newUser);
 }
